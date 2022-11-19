@@ -4,9 +4,11 @@ var wantUpper;
 var wantNumber;
 var wantSpecial;
 
-// || Function to prompt user for password options
+// || Function to prompt user for password options or cancel before loop
 function getPasswordOptions() {
   var userPrompt = prompt("Enter a number to begin.\nThis will generate the length of your password.");
+  if (userPrompt === null) return;
+
   // converts the input into a number
   passLength = parseInt(userPrompt);
   // alert and loop if user does not select a number or password length parameter not met
