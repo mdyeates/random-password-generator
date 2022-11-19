@@ -12,25 +12,25 @@ function getPasswordOptions() {
   // alert and loop if user does not select a number or password length parameter not met
   while (passLength < 10 || passLength > 64 || isNaN(passLength)) {
     alert("Do or do not, there is no try.\nPlease enter a number between 10 and 64 to generate a password.");
-    passLength = prompt("Enter a number to begin.\nThis will generate the length of your password.");
+    passLength = prompt("Enter a valid number to begin.\nThis will generate the length of your password.");
   }
-  // password character confirm
+  // password character selection
   alert(
-    "Please press OK to include a set of characters that will be generated with your password. Otherwise press CANCEL if you do not wish to include that set of characters."
+    "Please press OK to include a set of characters that will be generated with your password. Otherwise press CANCEL if you do not wish to include those characters."
   );
-  wantLower = confirm("Generate with lower case characters?");
-  wantUpper = confirm("Generate with upper case characters?");
-  wantNumber = confirm("Generate with numbers?");
-  wantSpecial = confirm("Generate with special characters?");
+  wantLower = confirm("Generate a password including lower case characters?");
+  wantUpper = confirm("Generate a password including upper case characters?");
+  wantNumber = confirm("Generate a password including numbers?");
+  wantSpecial = confirm("Generate a password including special characters?");
   // alert and loop if user does not select at least one type of character
   while (wantLower === false && wantUpper === false && wantNumber === false && wantSpecial === false) {
     alert(
       "You cannot pass! I am a servant of the Secret Fire, wielder of the flame of Anor. The dark fire will not avail you, flame of Udûn.\nGo back to the dark and select at least one character set!\nYOU! SHALL NOT! PASS!"
     );
-    wantLower = confirm("Generate with lower case characters?");
-    wantUpper = confirm("Generate with upper case characters?");
-    wantNumber = confirm("Generate with numbers?");
-    wantSpecial = confirm("Generate with special characters?");
+    wantLower = confirm("Generate a password including lower case characters?");
+    wantUpper = confirm("Generate a password including upper case characters?");
+    wantNumber = confirm("Generate a password including numbers?");
+    wantSpecial = confirm("Generate a password including special characters?");
   }
   return passLength;
 }
@@ -43,6 +43,7 @@ function getRandom(arr) {
   var character = arr[randomIndex];
   return character;
 }
+
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions();
