@@ -1,123 +1,40 @@
-// || Array of special characters to be included in password
-var specialCharacters = [
-  "@",
-  "%",
-  "+",
-  "\\",
-  "/",
-  "'",
-  "!",
-  "#",
-  "$",
-  "^",
-  "?",
-  ":",
-  ",",
-  ")",
-  "(",
-  "}",
-  "{",
-  "]",
-  "[",
-  "~",
-  "-",
-  "_",
-  ".",
-];
-
-// || Array of numeric characters to be included in password
-var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-// || Array of lowercase characters to be included in password
-var lowerCasedCharacters = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
-
-// || Array of uppercase characters to be included in password
-var upperCasedCharacters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
+// || Global Variables
+var wantLower;
+var wantUpper;
+var wantNumber;
+var wantSpecial;
 
 // || Function to prompt user for password options
 function getPasswordOptions() {
   var userPrompt = prompt("Enter a number to begin.\nThis will generate the length of your password.");
   // converts the input into a number
-  var passLength = parseInt(userPrompt);
+  passLength = parseInt(userPrompt);
   // alert and loop if user does not select a number or password length parameter not met
   while (passLength < 10 || passLength > 64 || isNaN(passLength)) {
     alert("Do or do not, there is no try.\nPlease enter a number between 10 and 64 to generate a password.");
-    var passLength = prompt("Enter a number to begin.\nThis will generate the length of your password.");
+    passLength = prompt("Enter a number to begin.\nThis will generate the length of your password.");
   }
   // password character confirm
   alert(
     "Please press OK to include a set of characters that will be generated with your password. Otherwise press CANCEL if you do not wish to include that set of characters."
   );
-  var wantLower = confirm("Generate with lower case characters?");
-  var wantUpper = confirm("Generate with upper case characters?");
-  var wantNumber = confirm("Generate with numbers?");
-  var wantSpecial = confirm("Generate with special characters?");
+  wantLower = confirm("Generate with lower case characters?");
+  wantUpper = confirm("Generate with upper case characters?");
+  wantNumber = confirm("Generate with numbers?");
+  wantSpecial = confirm("Generate with special characters?");
   // alert and loop if user does not select at least one type of character
   while (wantLower === false && wantUpper === false && wantNumber === false && wantSpecial === false) {
     alert(
       "You cannot pass! I am a servant of the Secret Fire, wielder of the flame of Anor. The dark fire will not avail you, flame of Udûn.\nGo back to the dark and select at least one character set!\nYOU! SHALL NOT! PASS!"
     );
-    var wantLower = confirm("Generate with lower case characters?");
-    var wantUpper = confirm("Generate with upper case characters?");
-    var wantNumber = confirm("Generate with numbers?");
-    var wantSpecial = confirm("Generate with special characters?");
+    wantLower = confirm("Generate with lower case characters?");
+    wantUpper = confirm("Generate with upper case characters?");
+    wantNumber = confirm("Generate with numbers?");
+    wantSpecial = confirm("Generate with special characters?");
   }
-  return [passLength, wantLower, wantUpper, wantNumber, wantSpecial];
+  return passLength;
 }
+
 // Function for getting a random element from an array
 function getRandom(arr) {
   // get random index value
@@ -126,10 +43,33 @@ function getRandom(arr) {
   var character = arr[randomIndex];
   return character;
 }
-console.log(getRandom(specialCharacters));
-
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+  getPasswordOptions();
+  // determine whether to include character set in generated password and push to options array
+  var options = [];
+  if (wantLower === true) {
+    options.push(lowerCasedCharacters);
+  }
+  if (wantUpper === true) {
+    options.push(upperCasedCharacters);
+  }
+  if (wantNumber === true) {
+    options.push(numericCharacters);
+  }
+  if (wantSpecial === true) {
+    options.push(specialCharacters);
+  }
+  // loop to add random characters to generated password determined by user password length input
+  var generatedPassword = "";
+  for (var index = 0; index < passLength; index++) {
+    var randomArray = getRandom(options);
+    var randomCharacters = getRandom(randomArray);
+    generatedPassword += randomCharacters;
+  }
+
+  return generatedPassword;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
