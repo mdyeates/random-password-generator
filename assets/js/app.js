@@ -1,4 +1,8 @@
 // || Global Variables
+var minPassLength = 10;
+var maxPassLength = 64;
+var userPrompt;
+var passLength;
 var wantLower;
 var wantUpper;
 var wantNumber;
@@ -6,29 +10,23 @@ var wantSpecial;
 
 // || Function to prompt user for password options or cancel before loop
 function getPasswordOptions() {
-  var userPrompt = prompt("Enter a number to begin.\nThis will generate the length of your password.");
+  userPrompt = prompt("Enter a number between 10 and 64.\nThis will generate the length of your password.");
   if (userPrompt === null) return;
-
   // converts the input into a number
   passLength = parseInt(userPrompt);
   // alert and loop if user does not select a number or password length parameter not met
-  while (passLength < 10 || passLength > 64 || isNaN(passLength)) {
-    alert("Do or do not, there is no try.\nPlease enter a number between 10 and 64 to generate a password.");
+  while (passLength < minPassLength || passLength > maxPassLength || isNaN(passLength)) {
+    alert("Please enter a number between 10 and 64 to generate a password.");
     passLength = prompt("Enter a valid number to begin.\nThis will generate the length of your password.");
   }
   // password character selection
-  alert(
-    "Please press OK to include a set of characters that will be generated with your password. Otherwise press CANCEL if you do not wish to include those characters."
-  );
   wantLower = confirm("Generate a password including lower case characters?");
   wantUpper = confirm("Generate a password including upper case characters?");
   wantNumber = confirm("Generate a password including numbers?");
   wantSpecial = confirm("Generate a password including special characters?");
   // alert and loop if user does not select at least one type of character
   while (wantLower === false && wantUpper === false && wantNumber === false && wantSpecial === false) {
-    alert(
-      "You cannot pass! I am a servant of the Secret Fire, wielder of the flame of Anor. The dark fire will not avail you, flame of Udûn.\nGo back to the dark and select at least one character set!\nYOU! SHALL NOT! PASS!"
-    );
+    alert("Please select at least one character type to continue");
     wantLower = confirm("Generate a password including lower case characters?");
     wantUpper = confirm("Generate a password including upper case characters?");
     wantNumber = confirm("Generate a password including numbers?");
