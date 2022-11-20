@@ -2,28 +2,27 @@
 
 ## Description
 
-This application generates a random password based on the criteria a user selects. This responsive app runs in the browser and features dynamically updated HTML and CSS,which is powered by JavaScript.
+This application creates a randomly generated password based on the criteria a user selects. Powered by JavaScript, this responsive app runs in the browser and features dynamically updated HTML and CSS.
 
 Summary:
 
-- Generation of a password when the 'generate' button is clicked
-- Presents a series of prompts
-- Length of password requires between 10 and 64 characters
-- The user can select a number of character types to include in their password
-- For example: lower case, upper case, numeric or special characters
-- App validates each input and requires at least one character type to be selected
-- Once all prompts are answered, the generated password is written to the page
+- Generation of a password when the 'Generate Password' button is clicked
+- Presents a series of prompts for password criteria
+- Minimum password length is 10 characters; maximum password length is 64 characters
+- Passwords can be created with a variety of character types
+- For example: lower case, upper case, numeric or special characters can be used
+- Each input is validated by the app, and at least one character type must be selected
+- A generated password is written to the page once all prompts have been answered
 
-Click to view the [Live Application](https://mdyeates.github.io/random-password-generator/
+Click to view the [Live Application](https://mdyeates.github.io/random-password-generator/)
 
 ## Installation
 
 N/A
 
-## Usage
+## Screenshot
 
-- Need to complete
-- Add screen shot / video
+![Screenshot](assets/images/Password-Generator-Screenshot.png)
 
 ## Credits
 
